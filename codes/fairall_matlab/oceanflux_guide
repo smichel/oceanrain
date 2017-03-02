@@ -1,0 +1,25 @@
+Guide for the Oceanflux matlab function "oceanflux.m"
+
+oceanflux.m reads an OceanRAIN datafile and calculates fluxes,SST,evaporation,budget and several other parameters from the anciellary and the OceanRAIN-measurements.
+the calculated variables will be saved as 'outfile.txt'
+
+current location: /scratch/uni/u237/users/smichel/oceanrain/codes/fairall#matlab/oceanflux.m
+
+needed parameters: filepath,win_height,temp_height,hum_height,bulktemp_depth
+
+filepath: FULL path to the OceanRAIN datafile
+win_height: height of wind measurement in m
+temp_height: height of temperature measurement in m
+hum_height: height of humidity measurement in m
+bulktemp_depth: depth of bulkwatertemperature measurement in m
+
+how to start the oceanflux matlab function in the unix terminal without the matlab gui:
+
+matlab -nodisplay -r "functionname(argument1, argument2, arugmentN);exit"
+
+matlab -nodisplay -r "oceanflux('filepath',win_height,temp_height,hum_height,bulktemp_depth);exit"
+
+for example:
+matlab -nodisplay -r "oceanflux('/scratch/uni/u237/users/smichel/oceanrain/codes/qc/polarstern/joint_PSDISDRO_PS95-PS97_colloc_cont_ww_nc.txt', 10, 10, 10, 2);exit"
+
+

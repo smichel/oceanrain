@@ -1,0 +1,72 @@
+01 count
+02 date UT
+03 time UT
+04 local date 	(added)
+05 local time	(added)
+06 minutes of day
+07 continuous count (julian day)
+08 UTC (seconds since 01.01.1970 00:00 UTC)
+09 latitude
+10 longitude
+11 heading
+12 air temperature
+13 dewpoint temperature
+14 bulkwater temperature
+15 sea surface temperature	(added, derived with donlon & fairall)
+16 relative humidity
+17 specific humidity at sea surface (added, derived with murphy/coop)
+18 specific air humdity				(added, derived with murphy/coop)
+19 pressure
+20 relative windspeed
+21 relative winddirection
+22 true windspeed
+23 true winddirection
+24 windspeed in 10 m height 		(added, derived with log windprofile)
+25 global radiation
+26 visibility
+27 ceiling
+28 max gusts
+29 salinity
+30 drag transfer coeff			(added, derived with donlon & fairall)
+31 lhf transfer coeff			(added, derived with donlon & fairall)
+32 shf transfer coeff			(added, derived with donlon & fairall)
+33 warmlayerflag				(added, derived with donlon & fairall)
+34 sensible heat flux			(added, derived with donlon & fairall)
+35 latent heat flux				(added, derived with donlon & fairall)
+36 evaporation					(added, derived with donlon & fairall)
+37 budget (evap-precip)			(added, derived with donlon & fairall)
+38 gauge
+39 ww
+40 W1
+41 W2 
+42 99th percentile of particle diameter 
+43 theoretical rain rate disdrometer
+44 theoretical snow rate disdrometer
+45 probability for rain
+46 probability for snow
+47 probability for mixed-phase
+48 flag (for precip phase, 0-5)
+49 flag2 (for precip intensity/suspicious)
+50 number of bins
+51 number of particles
+52 precip rate according to parameters 45-47
+53 reflectivity
+54 dBR
+55 dBZ
+56 relative windspeed (anemometer)
+57 reference voltage disdrometer
+
+
+
+errorvalues for new parameters:
+SSTerr=-99.9
+QSURerr=-9.9
+QAIRerr=9.9
+U10err=-9.9
+CDerr=-99.9
+CEerr=-99.9
+CHerr=-99.9
+SHFerr=-9999
+LHFerr=-9999
+EVAerr=-999
+BUDerr=-999
