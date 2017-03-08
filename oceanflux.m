@@ -428,10 +428,12 @@ outdata(isnan(outdata(:,24)),24)=-9.9;      % wind in 10 m height
 outdata(isnan(outdata(:,30)),30)=-99.9;     % drag transfer coeff
 outdata(isnan(outdata(:,31)),31)=-99.9;     % lhf transfer coeff
 outdata(isnan(outdata(:,32)),32)=-99.9;     % shf transfer coeff
+outdata(isnan(outdata(:,33)),33)=3;			% warm layer
 outdata(isnan(outdata(:,34)),34)=-9999;     % SHF
 outdata(isnan(outdata(:,35)),35)=-9999;     % LHF
 outdata(isnan(outdata(:,36)),36)=-999;      % evaporation
 outdata(isnan(outdata(:,37)),37)=-999;      % budget (E-P)
+
 
 pos=strfind(filepath,'/');
 outfilename=strcat(filepath(pos(end)+1:end-4),'_of.txt');
