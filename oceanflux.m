@@ -153,9 +153,6 @@ parfor i=1:length(lon)
             lat(i) = NaN;
             lon(i) = NaN;
         end
-        if isnan(lon(i))
-            localtime(i)=NaN;
-        end
         if sal(i) == -99.99
             sal(i) = NaN;
         end
