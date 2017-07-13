@@ -6,6 +6,10 @@ tic
 if ischar(win_height)
 win_height=str2num(win_height);temp_height=str2num(temp_height);hum_height=str2num(hum_height);temp_height=str2num(bulktemp_depth);
 end
+formatSpec_of='%08i %08i %04i %08i %04i %04i %10.6f %12i %8.4f %9.4f %5.1f %5.1f %5.1f %5.1f %5.1f %4i %5.1f %5.1f %5.1f %5.1f %4i %5.1f %4i %5.1f %6.1f %6i %6i %5.1f %6.2f %10.6f %10.6f %10.6f %2i %9.3f  %9.3f %10.4f %9.4f %6.2f % 03i % 03i % 03i %7.2f %7.2f %7.2f %7.2f %7.2f %7.2f %5i %5i %03i %05i %7.2f %18.2f %8.2f %8.2f %7.2f %7.2f\r\n';
+
+
+
 % parameter list for data
 % 01: discontinuous /continuous count % 02: date (ddmmyyyy) % 03: time (hhmm) % 04: mmday
 % 05: julian date (cont. count) % 06: unix time (cont. count) % 07: latitude % 08: longitude
@@ -26,7 +30,7 @@ end
 %   [s, qh, qe, evap, ce] = hoaps_par_FLUX(ts, qs, t, q, u)
 
 data=load(filepath);
-
+format long
 
 % %%%Ship meta data, in m:
 % meteor = 0;
@@ -435,7 +439,8 @@ outdata(isnan(outdata(:,37)),37)=-999;      % budget (E-P)
 pos=strfind(filepath,'/');
 outfilename=strcat(filepath(pos(end)+1:end-4),'_of.txt');
 outfile=strcat(filepath(1:pos(end)),outfilename);
-save(outfile,'outdata','-ascii');
+fileID=fopen(outfile,'w');
+fprintf(fileID,formatSpec_of,outdata');
 toc
 
 
