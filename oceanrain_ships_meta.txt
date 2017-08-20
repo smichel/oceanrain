@@ -1,0 +1,7 @@
+Meteor: Wind, Temp, Humidity on 37.5 m height, Watertemp on 2.5 m
+Polarstern: Wind on 39 m, Humidity and Temp on 29 m, Watertemp on 5 m
+Investigator: Wind on 22.1 m, Humidity and Temp on 31.4m,  Watertemp on 6.9m
+Sonne2: Wind on 34m, Humidity and Temp on 27 m, Watertemp on 2m
+Merian: Wind on 30.76m, Humidity and Temp on 20.18, Watertemp on 4.2m
+Sonne1: Wind, Humidity and Temp on 21.6m, Watertemp on 4m
+Revelle: Wind 18m, Humidity and Temp 16.5, Watertemp on 0.05m
