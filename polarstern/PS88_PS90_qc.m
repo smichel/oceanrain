@@ -5,6 +5,8 @@ formatSpec_PSD_na=    strcat('%08i %08i %04i %04i %12.6f %12i %8.4f %9.4f %7.2f 
 formatSpec_PSD_num_na=strcat('%08i %08i %04i %04i %12.6f %12i %8.4f %9.4f %7.2f %7.2f %7.2f %5i %5i % 03i % 05i %7.2f %18.2f %8.2f %8.2f %7.2f %7.2f', repmat('%12i ',1,128),'\r\n');
 % Variable  c,   date,time,mmday,kc,  UTC,  lat,  lon,  head,temp,  dewt,wtemp,rh ,pres,relF,relD,trueF,trueD,rad1,vis,ceil,maxFF,sal,gauge,ww,   w1, w2,  perc99,train,tsnow,rpar,spar,mpar,flag,flag20,bins,nums,precip,refl,dbr,dbz,wind,uref
 formatSpec_or='%08i %08i %04i %04i %10.6f %12i %8.4f %9.4f %5.1f %5.1f %5.1f %5.1f %4i %6.1f %4.1f %4i %4.1f %3i %6.1f %6i %6i %5.1f %6.2f %6.2f % 03i % 03i % 03i %7.2f %7.2f %7.2f %7.2f %7.2f %7.2f % 5i % 5i % 03i % 05i %7.2f %18.2f %8.2f %8.2f %7.2f %7.2f\r\n';
+formatSpec_firstLine=strcat(repmat('%8.4f ',1,128),'\r\n');
+firstLine=[0.0375  0.0632  0.0896  0.1166  0.1443  0.1727  0.2018  0.2316  0.2621  0.2934  0.3255  0.3583  0.3920  0.4266  0.4619  0.4982  0.5353  0.5734  0.6124  0.6524  0.6934  0.7354  0.7784  0.8225  0.8677  0.9140  0.9615  1.0101  1.0600  1.1111  1.1634  1.2171  1.2720  1.3284  1.3861  1.4453  1.5059  1.5681  1.6318  1.6970  1.7639  1.8324  1.9027  1.9747  2.0484  2.1240  2.2015  2.2809  2.3622  2.4456  2.5311  2.6186  2.7084  2.8003  2.8946  2.9911  3.0901  3.1915  3.2955  3.4020  3.5112  3.6230  3.7377  3.8552  3.9755  4.0989  4.2254  4.3550  4.4877  4.6238  4.7633  4.9062  5.0527  5.2028  5.3566  5.5142  5.6758  5.8413  6.0110  6.1848  6.3630  6.5456  6.7327  6.9244  7.1210  7.3223  7.5287  7.7402  7.9570  8.1791  8.4067  8.6400  8.8790  9.1240  9.3750  9.6323  9.8960 10.1662 10.4431 10.7269 11.0177 11.3157 11.6211 11.9341 12.2548 12.5835 12.9203 13.2655 13.6193 13.9818 14.3533 14.7341 15.1242 15.5241 15.9339 16.3538 16.7841 17.2251 17.6771 18.1402 18.6149 19.1013 19.5998 20.1106 20.6341 21.1706 21.7204 22.2838];
 
 % parameter list for data
 % 01: discontinuous /continuous count % 02: date (ddmmyyyy) % 03: time (hhmm) % 04: mmday
@@ -41,11 +43,11 @@ rain_PSD_na=load('rain_minute_psd_dbz_PS88-PS90.dat');
 
 PSD_na(2:end,1)=1:size(PSD_na,1)-1;
 PSD_num_na(1:end,1)=2:size(PSD_num_na,1)+1;
-PSD_num_na_dummy=horzcat(PSD_na(2,1:21),rain(3,5:end));
-PSD_num_na=vertcat(PSD_num_na_dummy,PSD_num_na);
-PSD_num_na=vertcat(PSD_na(1,:),PSD_num_na);
-PSD_num_na(2:end,1)=1:size(PSD_num_na(2:end,1));
-PSD_na(2:end,1)=1:size(PSD_na(2:end,1));
+% PSD_num_na_dummy=horzcat(PSD_na(2,1:21),rain(3,5:end));
+% PSD_num_na=vertcat(PSD_num_na_dummy,PSD_num_na);
+% PSD_num_na=vertcat(PSD_na(1,:),PSD_num_na);
+% PSD_num_na(2:end,1)=1:size(PSD_num_na(2:end,1));
+PSD_na(1:end,1)=1:size(PSD_na(1:end,1));
 
 
 j=1;p=1;
@@ -128,20 +130,20 @@ for i=1:length(resc_rain)
     
     %PSD_num
         
-        %flag 1: switching it to snow(1)
-        PSD_na(loc_rain_na(i),12)=2;
+        %flag 1: switching it to rain
+        PSD_na(loc_rain_na(i),12)=0;
         %flag 2: switchting it to the according precip intensity
-        if rain_snow(rain_loc_fillin_na(i),11) ==0
+        if rain_snow(rain_loc_fillin_na(i),5) ==0
             PSD_na(loc_rain_na(i),13) = 12;
-        elseif rain_snow(rain_loc_fillin_na(i),11)<=0.09
+        elseif rain_snow(rain_loc_fillin_na(i),5)<=0.09
             PSD_na(loc_rain_na(i),13) = 13;
-        elseif rain_snow(rain_loc_fillin_na(i),11)>0.09 & rain_snow(rain_loc_fillin_na(i),11)<=0.99
+        elseif rain_snow(rain_loc_fillin_na(i),5)>0.09 & rain_snow(rain_loc_fillin_na(i),5)<=0.99
             PSD_na(loc_rain_na(i),13) = 14;
-        elseif rain_snow(rain_loc_fillin_na(i),11)>0.99 & rain_snow(rain_loc_fillin_na(i),11)<=9.99
+        elseif rain_snow(rain_loc_fillin_na(i),5)>0.99 & rain_snow(rain_loc_fillin_na(i),5)<=9.99
             PSD_na(loc_rain_na(i),13) = 15;
-        elseif rain_snow(rain_loc_fillin_na(i),11)>10   & rain_snow(rain_loc_fillin_na(i),11)<=49.99
+        elseif rain_snow(rain_loc_fillin_na(i),5)>10   & rain_snow(rain_loc_fillin_na(i),5)<=49.99
             PSD_na(loc_rain_na(i),13) = 16;
-        elseif rain_snow(rain_loc_fillin_na(i),11)>50
+        elseif rain_snow(rain_loc_fillin_na(i),5)>50
             PSD_na(loc_rain_na(i),13) = 17;
         end
         
@@ -156,20 +158,20 @@ for i=1:length(resc_rain)
                
         %PSD_num_na
         
-        %flag 1: switching it to mixed phase
-        PSD_num_na(loc_rain_na(i),12)=2;
+        %flag 1: switching it to rain phase
+        PSD_num_na(loc_rain_na(i),12)=0;
         %flag 2: switchting it to the according precip intensity
-        if rain_snow(rain_loc_fillin_na(i),11) ==0
+        if rain_snow(rain_loc_fillin_na(i),5) ==0
             PSD_num_na(loc_rain_na(i),13) = 12;
-        elseif rain_snow(rain_loc_fillin_na(i),11)<=0.09
+        elseif rain_snow(rain_loc_fillin_na(i),5)<=0.09
             PSD_num_na(loc_rain_na(i),13) = 13;
-        elseif rain_snow(rain_loc_fillin_na(i),11)>0.09 & rain_snow(rain_loc_fillin_na(i),11)<=0.99
+        elseif rain_snow(rain_loc_fillin_na(i),5)>0.09 & rain_snow(rain_loc_fillin_na(i),5)<=0.99
             PSD_num_na(loc_rain_na(i),13) = 14;
-        elseif rain_snow(rain_loc_fillin_na(i),11)>0.99 & rain_snow(rain_loc_fillin_na(i),11)<=10
+        elseif rain_snow(rain_loc_fillin_na(i),5)>0.99 & rain_snow(rain_loc_fillin_na(i),5)<=10
             PSD_num_na(loc_rain_na(i),13) = 15;
-        elseif rain_snow(rain_loc_fillin_na(i),11)>10   & rain_snow(rain_loc_fillin_na(i),11)<=50
+        elseif rain_snow(rain_loc_fillin_na(i),5)>10   & rain_snow(rain_loc_fillin_na(i),5)<=50
             PSD_num_na(loc_rain_na(i),13) = 16;
-        elseif rain_snow(rain_loc_fillin_na(i),11)>50
+        elseif rain_snow(rain_loc_fillin_na(i),5)>50
             PSD_num_na(loc_rain_na(i),13) = 17;
         end
         
@@ -206,11 +208,13 @@ if safe
 
     PSD_outfile=strcat(PSD_na_name(1:end-4),'_ancillary_checked','.txt');
     f2=fopen(PSD_outfile,'w');
+    fprintf(f2,formatSpec_firstLine,firstLine');
     fprintf(f2,formatSpec_PSD_na,PSD_na');
 
 
     PSD_num_outfile=strcat(PSD_num_na_name(1:end-4),'_ancillary_checked','.txt');
     f3=fopen(PSD_num_outfile,'w');
+    fprintf(f3,formatSpec_firstLine,firstLine');
     fprintf(f3,formatSpec_PSD_num_na,PSD_num_na');
    
     parameter_outfile=strcat(PSD_na_name(1:25),'changed_parameters.txt');
