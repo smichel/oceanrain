@@ -127,14 +127,14 @@ rain=load('rain_minute_psd_num_2016V03-2016V04.dat');
 snow_PSD_num_na=load('snow_minute_psd_num_2016V03-2016V04.dat');
 snow_PSD_na=load('snow_minute_psd_dbz_2016V03-2016V04.dat');
 
+PSD_na(2:end,1)=1:size(PSD_na,1)-1;
 PSD_na(1,:)=[];
-PSD_na(1:end,1)=1:size(PSD_na,1);
-PSD_num_na(1:end,1)=1:size(PSD_num_na,1);
+PSD_num_na(1:end,1)=2:size(PSD_num_na,1)+1;
 % PSD_num_na_dummy=horzcat(PSD_na(2,1:21),rain(3,5:end));
 % PSD_num_na=vertcat(PSD_num_na_dummy,PSD_num_na);
 % PSD_num_na=vertcat(PSD_na(1,:),PSD_num_na);
 % PSD_num_na(2:end,1)=1:size(PSD_num_na(2:end,1));
-% PSD_na(2:end,1)=1:size(PSD_na(2:end,1));
+PSD_na(1:end,1)=1:size(PSD_na(1:end,1));
 
 
 [snow_lia_na,snow_loc_na]=ismember(snow_changed,PSD_na(:,6));
