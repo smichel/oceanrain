@@ -178,12 +178,12 @@ for i=1:length(snow_susp)
 %24 rain_bins,%25 rain_nums,%26 rain_refl,%27 rain_dbr,%28 rain_dbz,%29 snow,%30 snow_bins,%31 snow_nums,
 %32 snow_refl,%33 snow_dbr,%34 snow_dbz,%35 rpar,%36 spar,%37 mpar,%38 flag,%39 precip,%40 wind,%41 uref
 %fixing the oceanrain data from rain to snow
-        data(snow_susp(i),36)=rain_snow(snow_loc_fillin_na(i),30); % num_bins
-        data(snow_susp(i),37)=rain_snow(snow_loc_fillin_na(i),31); % num_particles
-        data(snow_susp(i),38)=rain_snow(snow_loc_fillin_na(i),29); % preciprate
-        data(snow_susp(i),39)=rain_snow(snow_loc_fillin_na(i),32); % reflectivity
-        data(snow_susp(i),40)=rain_snow(snow_loc_fillin_na(i),33); % dBr
-        data(snow_susp(i),41)=rain_snow(snow_loc_fillin_na(i),34); % dBZ
+        data(snow_susp(i),36)=rain_snow(snow_loc_fillin_na(i),12); % num_bins
+        data(snow_susp(i),37)=rain_snow(snow_loc_fillin_na(i),13); % num_particles
+        data(snow_susp(i),38)=rain_snow(snow_loc_fillin_na(i),11); % preciprate
+        data(snow_susp(i),39)=rain_snow(snow_loc_fillin_na(i),14); % reflectivity
+        data(snow_susp(i),40)=rain_snow(snow_loc_fillin_na(i),15); % dBr
+        data(snow_susp(i),41)=rain_snow(snow_loc_fillin_na(i),16); % dBZ
         
         %PSD_num
         
