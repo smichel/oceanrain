@@ -112,7 +112,7 @@ j=1; k=1; o=1;
 % calculating the localtime of the ship with the longitude
 
 localtime_zone=timezone(data(:,8));
-localtime=data(:,3)+localtime_zone*100;
+localtime=data(:,3)-localtime_zone*100;
 localdate=date;
 
 parfor i = 1:org_numel
